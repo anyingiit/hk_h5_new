@@ -1,6 +1,13 @@
 {
   "name": "hk_h5_new",
   "version": "1.0.0",
+  "scripts": {
+    "dev": "next dev",
+    "test": "tsc --watch",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
   "private": true,
   "dependencies": {
     "next": "^12.2.2",
