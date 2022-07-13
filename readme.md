@@ -31,3 +31,10 @@
 * chore：对构建流程或辅助工具和依赖库（如文档生成等）的更改
 
 参考: [https://zhuanlan.zhihu.com/p/67804026]()
+
+## 框架, 第三方模块, SDK等 文档
+
+* 微信 JS SDK: [https://developers.weixin.qq.com/doc/offiaccount/OA_Web_Apps/JS-SDK.html#1]()
+* GIT提交规范: [https://zhuanlan.zhihu.com/p/67804026]()
+* React: [https://react.docschina.org/docs/getting-started.html]()
+* next.js: [https://www.nextjs.cn/docs/getting-started]()
