@@ -1,0 +1,30 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true, // 启用所有严格类型检查选项。
+    "forceConsistentCasingInFileNames": true, // 禁止对同一个文件的不一致的引用。
+    "noEmit": true,
+    "incremental": true, // 增量编译, 会在根目录生成`tsconfig.tsbuildinfo`, 每次编译时仅仅比较不同即可
+    "esModuleInterop": true, // 处理CommonJS和ES module等标准互引用时的兼容问题
+    "module": "esnext", // 使用最新的es规范生成模块代码
+    "resolveJsonModule": true, // 允许导入扩展名为“.json”的模块
+    "isolatedModules": true, // 将每个文件作为单独的模块
+    "jsx": "preserve", // 控制如何在 JavaScript 文件中发出 JSX 构造。
+    "moduleResolution": "node", // 解析模块的方式
+  },
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
