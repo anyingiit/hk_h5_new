@@ -3,7 +3,8 @@ import {getLoginInfo} from "../data";
 
 const getBaseUrl = (env: string) => {
   const base: { [propName: string]: string } = {
-    "production": '/',
+    // TODO: 将其替换为生产服务器地址
+    "production": 'http://testapi.51cgt.cn/',
     "development": 'http://testapi.51cgt.cn/',
     "test": 'http://localhost:3001',
   }
