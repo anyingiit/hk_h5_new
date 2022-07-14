@@ -12,19 +12,23 @@ type User = {
   token: string
 } | undefined
 
-const isLogin = (): boolean => {
+const hasLoginInfo = (): boolean => {
   return cookie.get('user') !== undefined
 }
 
-const login = (token: string) => {
+const writeLoginInfo = (token: string) => {
   cookie.set('user', {
     token: token
   } as User)
 }
 
-const logout = () => {
+const removeLoginInfo = () => {
   cookie.remove('user')
 }
 
+const getLoginInfo = (): User | undefined => {
+  return cookie.get('user')
+}
+
 // 如果想要使用者导入时是别名导入, 那么就需要使用default
-export {isLogin, login, logout}
+export {hasLoginInfo, writeLoginInfo, removeLoginInfo, getLoginInfo}
