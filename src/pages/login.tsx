@@ -3,7 +3,7 @@ import {AxiosError} from "axios";
 import {patientRegister} from "../api";
 
 const Login: React.FC<any> = () => {
-  const login = () => {
+  const register = () => {
     patientRegister("18888888889", "123456")
       .then((resp) => {
         console.log(resp.data)
@@ -15,7 +15,7 @@ const Login: React.FC<any> = () => {
   }
   return (
     <div>
-      <button onClick={login}>登录</button>
+      <button onClick={register}>注册</button>
     </div>
   )
 }
