@@ -18,6 +18,7 @@
     "weixin-js-sdk": "^1.6.0"
   },
   "devDependencies": {
+    "@types/axios": "^0.14.0",
     "@types/next": "^9.0.0",
     "@types/node": "^18.0.3",
     "@types/react": "^18.0.15",
