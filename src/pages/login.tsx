@@ -46,9 +46,16 @@ const Login: React.FC<any> = () => {
   const clickRegister = () => {
     router.push({
       pathname: '/register',
-      query: {
-        telephone: telephone
-      }
+      query: (
+        () => {
+          // 数据不为空时, 才会在query中添加这个键值对
+          const data: {[key: string]: string} = {}
+          if (telephone !== "") {
+            data['telephone'] = telephone
+          }
+          return data
+        }
+      )()
     })
   }
   const clickRetrieve = () => {
