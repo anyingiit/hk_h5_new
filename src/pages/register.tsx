@@ -58,8 +58,9 @@ const Register: React.FC<any> = () => {
             Toast.show('基本账号注册成功')
             setCurStep(curStep + 1)
           })
-          .catch((error) => {
-            Toast.show(error)
+          .catch((error: AxiosError) => {
+            Toast.show('请求失败: ' + error)
+            console.log(error)
           })
         break
       case 1:
