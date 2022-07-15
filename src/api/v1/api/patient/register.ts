@@ -1,7 +1,7 @@
 import {patientHttp} from "./patient";
 
 //TODO: 应当对请求数据进行规范
-interface PatientLoginRequest {
+interface PatientRegisterRequest {
   mobile: string,
   pd: string
 }
