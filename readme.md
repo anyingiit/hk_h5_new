@@ -39,6 +39,10 @@
 
 参考: [https://zhuanlan.zhihu.com/p/67804026]()
 
+## TODO
+
+- [x] (已暂时取消, 因为并不影响开发)全局Toast封装
+
 ## 框架, 第三方模块, SDK等 文档
 
 * 微信 JS
