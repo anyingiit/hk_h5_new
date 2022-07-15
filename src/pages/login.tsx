@@ -14,7 +14,6 @@ const Login: React.FC<any> = () => {
   const clickLogin = () => {
     patientLogin(telephone, password)
       .then((resp) => {
-        debugger
         const data = resp.data.data
         if (data.loginFlag === undefined || typeof data.loginFlag !== 'number') {
           Toast.show('内部错误')
