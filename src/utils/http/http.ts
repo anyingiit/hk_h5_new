@@ -61,7 +61,7 @@ class MyAxios {
       config.headers = {
         // TODO: 从cookie获取token
         ...config.headers,
-        "Content-Type": 'multipart/form-data;',
+        // 此处无需添加"Content-Type": 'multipart/form-data;', 因为浏览器在发送请求前会发现data是一个FormData对象, 那么其就会自动在header中添加正确的 符合规范的头, 类似于"Content-Type": 'multipart/form-data; boundary=----WebKitFormBoundarycGaBrWhytNTtMjWg', 后面的`boundary`相关信息是自动生成的(该属性用于在`multipart/form-data`分割不同的字段信息用的)
         "x-hk-token": getLoginInfo()?.token ?? '',
       }
       return config
