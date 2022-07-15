@@ -41,8 +41,9 @@
 
 ## 框架, 第三方模块, SDK等 文档
 
-* 微信 JS SDK: [https://developers.weixin.qq.com/doc/offiaccount/OA_Web_Apps/JS-SDK.html#1]()
-* GIT提交规范: [https://zhuanlan.zhihu.com/p/67804026]()
-* React: [https://react.docschina.org/docs/getting-started.html]()
-* next.js: [https://www.nextjs.cn/docs/getting-started]()
+* 微信 JS
+  SDK: [https://developers.weixin.qq.com/doc/offiaccount/OA_Web_Apps/JS-SDK.html#1](https://developers.weixin.qq.com/doc/offiaccount/OA_Web_Apps/JS-SDK.html#1)
+* GIT提交规范: [https://zhuanlan.zhihu.com/p/67804026](https://zhuanlan.zhihu.com/p/67804026)
+* React: [https://react.docschina.org/docs/getting-started.html](https://react.docschina.org/docs/getting-started.html)
+* next.js: [https://www.nextjs.cn/docs/getting-started](https://www.nextjs.cn/docs/getting-started)
 * Ant Design Mobile: [https://mobile.ant.design/zh](https://mobile.ant.design/zh)
