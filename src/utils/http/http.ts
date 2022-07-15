@@ -1,5 +1,6 @@
 import axios, {Axios, AxiosError, AxiosPromise, AxiosRequestConfig} from "axios";
 import {getLoginInfo} from "../data";
+import {Toast} from "antd-mobile";
 
 const getBaseUrl = (env: string) => {
   const base: { [propName: string]: string } = {
@@ -72,6 +73,20 @@ class MyAxios {
      */
     instance.interceptors.response.use((response) => {
       // TODO: 对请求结果进行预处理
+      // 返回的结果根本没有数据
+      if (!response.data) {
+        Toast.show('response中没有数据')
+        return Promise.reject(response)
+      }
+      // 返回的结果不包含code或者message
+      if (response.data.code === undefined || response.data.message === undefined) {
+        Toast.show('response数据中没有data或者message字段')
+        return Promise.reject(response)
+      }
+      if (response.data.code !== 2000) {
+        Toast.show('统一出错, 返回id不是2000, 信息: ' + response.data.message)
+        return Promise.reject(response)
+      }
       return response
     }, (error: AxiosError) => {
       /**
