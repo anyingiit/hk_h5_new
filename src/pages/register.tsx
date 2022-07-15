@@ -39,7 +39,8 @@ const Register: React.FC<any> = () => {
   const [conformPassword, setConformPassword] = useState('')
 
   //TODO: 到底是使用路由切换页面, 还是只用render刷新不同的组件?
-  const [curStep, setCurStep] = useState(0)
+  //TODO: 还是有问题的, 是否应当传token过来? 还是直接在这个页面读?
+  const [curStep, setCurStep] = useState(isCompleteAccountRegister?1:0)  // 如果用户已经完成基本信息注册, 但是还必须完成必要信息注册, 那么步骤直接跳转到第二步, 否则就是第一页.
   const clickNextStep = () => {
     switch (curStep) {
       case 0:
