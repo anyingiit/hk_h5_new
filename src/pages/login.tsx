@@ -59,7 +59,7 @@ const Login: React.FC<any> = () => {
   }
   const clickRetrieve = () => {
     Toast.show({
-      content: '敬请期待!',
+      content: '请联系管理员处理',
       maskClickable: false,
       position: 'bottom'
     })
