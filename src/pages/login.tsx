@@ -109,14 +109,6 @@ const Login: React.FC<any> = () => {
           <Input onChange={val => setForm({...form, password: val})} placeholder={`请输入密码`} clearable={true} type={`password`}/>
         </Form.Item>
       </Form>
-      {/*<AutoCenter>*/}
-      {/*  <Button */}
-      {/*    color={`primary`} */}
-      {/*    onClick={() => {*/}
-      {/*    router.push('/register')*/}
-      {/*  }}>登录*/}
-      {/*  </Button>*/}
-      {/*</AutoCenter>*/}
       {/*TODO: 将Button移至From的字段属性的footer中, 以便可以使用其检测表单是否合法的特性*/}
       <Grid columns={2}>
         <Grid.Item>
