@@ -21,9 +21,9 @@ yarn start
 ### 测试
 #### 服务器地址
 已部署两个服务器
-1. AnYing的个人服务器, 更新频率: 由AnYing自定
+1. 发版前测试服务器, 更新频率: 由AnYing自定
    1. 地址: [http://101.42.99.142:3000](http://101.42.99.142:3000)
-2. AnYing的vercel, 更新频率: 每次提交
+2. 前瞻服务器, 更新频率: 每次提交
    1. 地址: [https://hk-h5-new.vercel.app](https://hk-h5-new.vercel.app)
 
 ## 框架选型
