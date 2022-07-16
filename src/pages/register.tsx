@@ -29,8 +29,6 @@ interface Query {
 const Register: React.FC<any> = () => {
   const router = useRouter()
   const {isCompleteAccountRegister, telephone: queryTelephone}: Query = router.query
-  console.log(isCompleteAccountRegister)
-  console.log(queryTelephone)
 
   //TODO: 如果用户因为账号过期退出登录, 那么默认值可以是cookie中用户的手机号
   //TODO: 应当将第一页注册表单单独抽象为一个页面, 其中telephone, password, conformPassword由该页面维护
