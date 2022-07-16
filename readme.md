@@ -20,6 +20,15 @@ yarn build
 yarn start
 ```
 
+### 其他命令
+#### 更新`CHANGELOG.md`文件
+```shell
+# 该命令根据所有遵循angular commit message的提交生成一个`CHANGELOG.md`, 并且该命令只会更新目录下存在的`CHANGELOG.md`
+# 应当在发版时同步使用
+# tips: 发版版本号规范详见下方`规范 -> 版本号规范`
+yarn changelog
+```
+
 ## 开发, 测试, 生产的部署
 ### 测试
 #### 服务器地址
