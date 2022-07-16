@@ -99,14 +99,14 @@ const Login: React.FC<any> = () => {
           label={`手机号`}
           rules={[{required: true, message: '手机号不能为空'}]}
         >
-          <Input onChange={val => setForm({...form, telephone: val})} placeholder={`请输入手机号`}/>
+          <Input placeholder={`请输入手机号`}/>
         </Form.Item>
         <Form.Item
           name={`password`}
           label={`密码`}
           rules={[{required: true, message: '密码不能为空'}]}
         >
-          <Input onChange={val => setForm({...form, password: val})} placeholder={`请输入密码`} clearable={true} type={`password`}/>
+          <Input placeholder={`请输入密码`} clearable={true} type={`password`}/>
         </Form.Item>
       </Form>
       {/*TODO: 将Button移至From的字段属性的footer中, 以便可以使用其检测表单是否合法的特性*/}
