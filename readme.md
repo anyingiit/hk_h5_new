@@ -2,6 +2,30 @@
 
 # hk_h5_new
 
+## 开发和构建
+### 开发
+```shell
+yarn install
+yarn dev
+yarn test
+```
+
+### 构建和运行
+```shell
+yarn install
+yarn build
+yarn start
+```
+
+## 开发, 测试, 生产的部署
+### 测试
+#### 服务器地址
+已部署两个服务器
+1. AnYing的个人服务器, 更新频率: 由AnYing自定
+   1. 地址: [http://101.42.99.142:3000](http://101.42.99.142:3000)
+2. AnYing的vercel, 更新频率: 每次提交
+   1. 地址: [https://hk-h5-new.vercel.app](https://hk-h5-new.vercel.app)
+
 ## 框架选型
 
 * render: React + Next.js
