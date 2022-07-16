@@ -8,11 +8,13 @@ import {patientLogin} from "../api/v1/api/patient/login";
 const Login: React.FC<any> = () => {
   const router = useRouter()
   //TODO: 如果用户因为账号过期退出登录, 那么默认值可以是cookie中用户的手机号
-  const [telephone, setTelephone] = useState('')
-  const [password, setPassword] = useState('')
+  const [form, setForm] = useState({
+    telephone: '',
+    password: ''
+  })
 
   const clickLogin = () => {
-    patientLogin(telephone, password)
+    patientLogin(form['telephone'], form['password'])
       .then((resp) => {
         const data = resp.data.data
         if (data.loginFlag === undefined || typeof data.loginFlag !== 'number') {
@@ -49,8 +51,8 @@ const Login: React.FC<any> = () => {
         () => {
           // 数据不为空时, 才会在query中添加这个键值对
           const data: {[key: string]: string} = {}
-          if (telephone !== "") {
-            data['telephone'] = telephone
+          if (form['telephone'] !== "") {
+            data['telephone'] = form['telephone']
           }
           return data
         }
@@ -85,20 +87,26 @@ const Login: React.FC<any> = () => {
           >登录
           </Button>
         }
+        onValuesChange={(changedValues, allValues) => {
+          setForm({
+            ...form,
+            ...changedValues
+          })
+        }}
       >
         <Form.Item
           name={`telephone`}
           label={`手机号`}
           rules={[{required: true, message: '手机号不能为空'}]}
         >
-          <Input onChange={val => setTelephone(val)} placeholder={`请输入手机号`}/>
+          <Input onChange={val => setForm({...form, telephone: val})} placeholder={`请输入手机号`}/>
         </Form.Item>
         <Form.Item
           name={`password`}
           label={`密码`}
           rules={[{required: true, message: '密码不能为空'}]}
         >
-          <Input onChange={val => setPassword(val)} placeholder={`请输入密码`} clearable={true} type={`password`}/>
+          <Input onChange={val => setForm({...form, password: val})} placeholder={`请输入密码`} clearable={true} type={`password`}/>
         </Form.Item>
       </Form>
       {/*<AutoCenter>*/}
