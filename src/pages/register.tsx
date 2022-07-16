@@ -32,6 +32,7 @@ const Register: React.FC<any> = () => {
 
   //TODO: 如果用户因为账号过期退出登录, 那么默认值可以是cookie中用户的手机号
   //TODO: 应当将第一页注册表单单独抽象为一个页面, 其中telephone, password, conformPassword由该页面维护
+  //TODO: 不应当单独创建表单变量, 应该将一个form抽象为一个state, state内保存所有该from用得到的变量, 最后使用from的属性`onValuesChange`来同步表单数据, 参考login页面
   const [telephone, setTelephone] = useState(queryTelephone ?? '')
   const [password, setPassword] = useState('')
   const [conformPassword, setConformPassword] = useState('')
@@ -69,6 +70,7 @@ const Register: React.FC<any> = () => {
         break
     }
   }
+  //TODO: 删除该方法
   const register = () => {
     patientRegister("18888888892", "123456")
       .then((resp) => {
