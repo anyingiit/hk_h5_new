@@ -1,3 +1,4 @@
+// 使antd-mobile支持服务端渲染
 const withTM = require('next-transpile-modules')([
     'antd-mobile'
 ])
