@@ -1,2 +1,2 @@
-export * from './docker'
+export * from './doctor'
 export * from './patient'
