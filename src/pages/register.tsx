@@ -6,6 +6,7 @@ import {useRouter} from "next/router";
 
 const {Step} = Steps
 
+// 关于query能不能使用getServerSideProps获取, 然后通过props传递过来的想法, 这是不行的, 因为useRouter()只能在组件内部使用, 在组件创建之前是没有router的
 interface Query {
   /**
    * 用户是否已经完成基本账号信息的注册, 如果已完成那么直接将注册阶段跳到`主要信息`阶段
@@ -17,18 +18,16 @@ interface Query {
   telephone?: string
 }
 
-// TODO: props应当能够接受一个参数, 标识用户已经完成了账号注册, 但是需要继续进行必要信息的填写
-// TODO: props应当能接受一个手机号, 该手机号的作用就是用户在登录界面输入了手机号, 然后点击了注册, 此时将该手机号直接输入到该页面手机号框内, 免得用户重复输入手机号
 /**
  * 用户注册页面
  * 用户注册共计三个阶段
- *    1. 账号信息
- *    2. 主要信息
+ *    1. 账号信息, 注意: 该阶段的下一步实际上已经和服务端通信, 完成了`基本账号`的注册
+ *    2. 主要信息, 注意: 该阶段以后的提交, 实际上是拿token和服务器通信了
  *    3. 其他信息
  */
 const Register: React.FC<any> = () => {
   const router = useRouter()
-  const {isCompleteAccountRegister, telephone: queryTelephone}: Query = router.query
+  const {isCompleteAccountRegister: queryIsCompleteAccountRegister, telephone: queryTelephone}: Query = router.query
 
   //TODO: 如果用户因为账号过期退出登录, 那么默认值可以是cookie中用户的手机号
   //TODO: 应当将第一页注册表单单独抽象为一个页面, 其中telephone, password, conformPassword由该页面维护
@@ -39,7 +38,7 @@ const Register: React.FC<any> = () => {
 
   //TODO: 到底是使用路由切换页面, 还是只用render刷新不同的组件?
   //TODO: 还是有问题的, 是否应当传token过来? 还是直接在这个页面读?
-  const [curStep, setCurStep] = useState(isCompleteAccountRegister?1:0)  // 如果用户已经完成基本信息注册, 但是还必须完成必要信息注册, 那么步骤直接跳转到第二步, 否则就是第一页.
+  const [curStep, setCurStep] = useState(queryIsCompleteAccountRegister ? 1 : 0)  // 如果用户已经完成基本信息注册, 但是还必须完成必要信息注册, 那么步骤直接跳转到第二步, 否则就是第一页.
   const clickNextStep = () => {
     switch (curStep) {
       case 0:
@@ -69,17 +68,6 @@ const Register: React.FC<any> = () => {
       case 2:
         break
     }
-  }
-  //TODO: 删除该方法
-  const register = () => {
-    patientRegister("18888888892", "123456")
-      .then((resp) => {
-        console.log(resp.data)
-        console.log(resp)
-      })
-      .catch((error: AxiosError) => {
-        console.log(error)
-      })
   }
   return (
     <div>
