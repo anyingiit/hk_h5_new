@@ -27,7 +27,10 @@ interface Query {
  */
 const Register: React.FC<any> = () => {
   const router = useRouter()
-  const {isCompleteAccountRegister: queryIsCompleteAccountRegister, telephone: queryTelephone}: Query = router.query
+  const {
+    isCompleteAccountRegister: queryIsCompleteAccountRegister,
+    telephone: queryTelephone
+  }: Query = router.query
 
   //TODO: 如果用户因为账号过期退出登录, 那么默认值可以是cookie中用户的手机号
   //TODO: 应当将第一页注册表单单独抽象为一个页面, 其中telephone, password, conformPassword由该页面维护
@@ -100,14 +103,16 @@ const Register: React.FC<any> = () => {
           label={`密码`}
           rules={[{required: true, message: '密码不能为空'}]}
         >
-          <Input onChange={val => setPassword(val)} placeholder={`请输入密码`} clearable={true} type={`password`}/>
+          <Input onChange={val => setPassword(val)} placeholder={`请输入密码`}
+                 clearable={true} type={`password`}/>
         </Form.Item>
         <Form.Item
           name={`conformPassword`}
           label={`确认密码`}
           rules={[{required: true, message: '确认密码不能为空'}]}
         >
-          <Input onChange={val => setConformPassword(val)} placeholder={`请再次输入密码`} clearable={true} type={`password`}/>
+          <Input onChange={val => setConformPassword(val)}
+                 placeholder={`请再次输入密码`} clearable={true} type={`password`}/>
         </Form.Item>
       </Form>
 

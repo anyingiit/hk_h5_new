@@ -50,7 +50,7 @@ const Login: React.FC<any> = () => {
       query: (
         () => {
           // 数据不为空时, 才会在query中添加这个键值对
-          const data: {[key: string]: string} = {}
+          const data: { [key: string]: string } = {}
           if (form['telephone'] !== "") {
             data['telephone'] = form['telephone']
           }
