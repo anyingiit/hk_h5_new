@@ -29,6 +29,7 @@ hk_h5_new
 ├── package.json # package
 ├── readme.md # 项目说明
 ├── .editorconfig # EditorConfig配置文件, EditorConfig用于确保在不同的编辑器和 IDE 之间定义和维护一致的代码风格
+├── .eslintrc.json # ESlint配置文件, ESlint是一款代码检查工具
 ├── tsconfig.json # 配置ts构建和检查规则
 └── yarn.lock # yarn确保其他人获取的依赖和第一次yarn install一致
 ```
