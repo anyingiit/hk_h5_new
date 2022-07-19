@@ -1,0 +1,8 @@
+{
+  // 依赖名: eslint-config-next
+  // 内涵三个插件:
+  //    * eslint-plugin-react
+  //    * eslint-plugin-react-hooks
+  //    * eslint-plugin-next
+  "extends": "next/core-web-vitals"
+}
