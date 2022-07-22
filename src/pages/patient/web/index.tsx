@@ -1,8 +1,11 @@
 import React from "react";
+import NotFound404 from "../../common_page/web/notFound404";
 
 const Index: React.FC = () => {
   return (
-    <div>src/pages/patient/web/index.tsx</div>
+    <div>
+      <NotFound404 subTitle={`患者端暂时不支持WEB, 敬请期待!`}/>
+    </div>
   )
 }
 
