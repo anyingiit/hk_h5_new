@@ -1,6 +1,6 @@
 import React from "react";
 import {AppProps} from "next/app";
-import 'antd/dist/antd.css';
+import '../css/_app.css'
 
 export default class App extends React.Component<AppProps, any> {
   render() {

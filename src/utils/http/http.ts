@@ -1,12 +1,17 @@
-import axios, {Axios, AxiosError, AxiosPromise, AxiosRequestConfig} from "axios";
-import {getLoginInfo} from "../data";
+import axios, {
+  Axios,
+  AxiosError,
+  AxiosPromise,
+  AxiosRequestConfig
+} from "axios";
 import {Toast} from "antd-mobile";
+import {ToastHandler} from "antd-mobile/es/components/toast";
 
 const getBaseUrl = (env: string) => {
   const base: { [propName: string]: string } = {
     // TODO: 将其替换为生产服务器地址
-    "production": 'http://testapi.51cgt.cn/',
-    "development": 'http://testapi.51cgt.cn/',
+    "production": 'http://testapi.51cgt.cn/DPPlatform',
+    "development": 'http://testapi.51cgt.cn/DPPlatform',
     "test": 'http://localhost:3001',
   }
   return base[env] ?? base['production']
@@ -20,6 +25,8 @@ class MyAxios {
    * 也可以简单的理解为，当前请求为跨域类型时是否在请求中协带cookie。
    */
   readonly withCredentials: boolean
+
+  loadToast: ToastHandler | null = null
 
   constructor() {
     this.baseUrl = getBaseUrl(process.env.NODE_ENV)
@@ -59,11 +66,17 @@ class MyAxios {
      * 设置请求拦截器
      */
     instance.interceptors.request.use((config) => {
+      // 发送请求之前显示一个loading 的 Toast, 其返回一个控制器, 控制器可以调用`close`方法.
+      // 接受其返回值到成员变量`loadToast`中, 在请求有结果时调用`close`方法
+
+      this.loadToast = Toast.show({
+        icon: `loading`,
+        duration: 0,
+        content: `处理中...`
+      })
       config.headers = {
         // TODO: 从cookie获取token
         ...config.headers,
-        // 此处无需添加"Content-Type": 'multipart/form-data;', 因为浏览器在发送请求前会发现data是一个FormData对象, 那么其就会自动在header中添加正确的 符合规范的头, 类似于"Content-Type": 'multipart/form-data; boundary=----WebKitFormBoundarycGaBrWhytNTtMjWg', 后面的`boundary`相关信息是自动生成的(该属性用于在`multipart/form-data`分割不同的字段信息用的)
-        "x-hk-token": getLoginInfo()?.token ?? '',
       }
       return config
     }, (error: AxiosError) => Promise.reject(error))
@@ -73,22 +86,26 @@ class MyAxios {
      */
     instance.interceptors.response.use((response) => {
       // TODO: 对请求结果进行预处理
+      this.loadToast != null && this.loadToast.close()
+
       // 返回的结果根本没有数据
       if (!response.data) {
         Toast.show('response中没有数据')
         return Promise.reject(response)
       }
-      // 返回的结果不包含code或者message
-      if (response.data.code === undefined || response.data.message === undefined) {
-        Toast.show('response数据中没有data或者message字段')
+      const respData = response.data
+      // 返回的结果不包含success或者message
+      if (respData.success === undefined || respData.message === undefined) {
+        Toast.show('response数据中没有success或者message字段')
         return Promise.reject(response)
       }
-      if (response.data.code !== 2000) {
-        Toast.show('统一出错, 返回id不是2000, 信息: ' + response.data.message)
+      if (!respData.success) {
+        Toast.show('统一出错, 接口返回操作失败了, 信息: ' + response.data.message)
         return Promise.reject(response)
       }
       return response
     }, (error: AxiosError) => {
+      this.loadToast != null && this.loadToast.close()
       /**
        * 当有返回时
        */

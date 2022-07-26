@@ -1,0 +1,18 @@
+.root {
+  width: 100vw;
+  height: 100vh;
+  //noinspection CssUnknownTarget
+  background: url("/img/fast_login_background.png");
+  padding-top: 1.55rem;
+
+  .container {
+    width: 3.75rem;
+    //background-color: blanchedalmond;
+
+    .form {
+      .button {
+        width: 2.25rem;
+      }
+    }
+  }
+}

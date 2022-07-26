@@ -1,9 +1,12 @@
 import React from "react";
+import PageBase from "../components/pageBase";
 
 // TODO: 完成HOME页面
 const Home: React.FC<any> = () => {
   return (
-    <div>Home</div>
+    <PageBase navBar={{title: `首页`, showBackArrow: false}}>
+
+    </PageBase>
   )
 }
 

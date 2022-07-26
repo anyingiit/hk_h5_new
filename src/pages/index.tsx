@@ -16,7 +16,7 @@ const Index: React.FC<any> = () => {
       // TODO: axios需要进行封装, 在某个接口请求返回token失效的时候应当提示信息并跳转到index页面
       router.push('/home')
     } else {
-      router.push('/login')
+      router.push('/fast_login')
     }
   })
   return (
