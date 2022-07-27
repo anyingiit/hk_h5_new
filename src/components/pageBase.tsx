@@ -26,6 +26,9 @@ const PageBase: React.FC<Props> = ({navBar, children}) => {
       <Head>
         <meta name={`viewport`}
               content={`width=device-width, initial-scale=1.0`}/>
+        {/*TODO: 删除以下行以取消https访问http的许可*/}
+        <meta httpEquiv="Content-Security-Policy"
+              content="upgrade-insecure-requests"/>
         <title>{navBar ? navBar.title : `页面`}</title>
       </Head>
 
