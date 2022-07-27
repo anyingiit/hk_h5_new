@@ -67,6 +67,14 @@ const Fast_login: React.FC<Props> = ({doctorId}) => {
                       })
                       .catch((reason) => {
                         // Toast.show('login 失败')
+                        const respData = reason.data
+                        /**
+                         * 如果失败的原因是该用户未注册, 那么应当跳转到注册页面
+                         */
+                        if (respData.msg === "无此账号对应的患者") {
+                          Toast.show('请继续填写剩余内容以完成注册')
+                          setMode('register')
+                        }
                         //TODO: 是因为用户注册失败, 还是密码错误或者其他失败?  如果是前者, 那么应当跳转到注册页面, 如果是后者, 那么应当提示错误
                         console.log(reason)
                       })
