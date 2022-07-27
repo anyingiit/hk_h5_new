@@ -1,6 +1,6 @@
 {
   "name": "hk_h5_new",
-  "version": "0.1.0-alpha",
+  "version": "0.1.1-alpha",
   "scripts": {
     "dev": "next dev",
     "test": "tsc --watch",
