@@ -95,8 +95,8 @@ class MyAxios {
       }
       const respData = response.data
       // 返回的结果不包含success或者message
-      if (respData.success === undefined || respData.message === undefined) {
-        Toast.show('response数据中没有success或者message字段')
+      if (respData.success === undefined || respData.msg === undefined) {
+        Toast.show('response数据中没有success或者msg字段')
         return Promise.reject(response)
       }
       if (!respData.success) {
