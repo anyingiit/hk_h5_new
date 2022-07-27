@@ -3,7 +3,7 @@ import PageBase from "../components/pageBase";
 import styles from "../css/pages/fast_login.module.scss"
 import {AutoCenter, Button, Form, Input, Toast} from "antd-mobile";
 import {useRouter} from "next/router";
-import {doLogin_web_pf} from "../api/login/doLogin_web_pf";
+import {doLogin_web_pf} from "../api/login";
 
 
 interface Query {
