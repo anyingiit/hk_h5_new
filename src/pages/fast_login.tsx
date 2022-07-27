@@ -2,17 +2,24 @@ import React, {useState} from "react";
 import PageBase from "../components/pageBase";
 import styles from "../css/pages/fast_login.module.scss"
 import {AutoCenter, Button, Form, Input, Toast} from "antd-mobile";
-import {useRouter} from "next/router";
 import {doLogin_web_pf} from "../api/login";
+import {GetServerSideProps} from "next";
+import {register} from "../api/patient/register";
+import {isNumber, toNumber} from "../utils";
 
 
 interface Query {
   /**
    * 如果存在, 则需要绑定医生
    */
-  bindDoctor?: {
-    doctorId: number
-  }
+  doctorId?: string
+}
+
+interface Props {
+  /**
+   * 如果存在, 则需要绑定医生
+   */
+  doctorId?: number
 }
 
 /**
@@ -22,16 +29,16 @@ interface Query {
  *    2. 患者未注册自动注册并且登录
  *    3. 患者扫描医生二维码注册
  */
-const Fast_login: React.FC = () => {
-  const router = useRouter()
-  const {bindDoctor}: Query = router.query
+const Fast_login: React.FC<Props> = ({doctorId}) => {
   const [formData, setFormData] = useState({
-    doctorId: ``,
+    doctorId: doctorId,
     telephone: ``,
     realName: ``,
     password: ``
   })
-  const [mode, setMode] = useState('login' as 'login' | 'register' | 'bindDoctorRegister')
+  // debugger
+  const [mode, setMode] = useState(formData.doctorId ? 'bindDoctorRegister' : 'login' as 'login' | 'register' | 'bindDoctorRegister')
+  //TODO: 使用useEffect页面载入时需不需要进入`bindDoctorRegister`模式并且将`doctorId`注册到`form.doctorId`
   return (
     <PageBase>
       <div className={styles.root}>
@@ -65,6 +72,24 @@ const Fast_login: React.FC = () => {
                       })
                     break
                   case "register":
+                    register(formData.realName, formData.telephone, formData.password)
+                      .then(() => {
+                        Toast.show('注册成功!')
+                      })
+                      .catch((reason) => {
+                        Toast.show('注册失败...')
+                        console.log(reason)
+                      })
+                    break
+                  case "bindDoctorRegister":
+                    register(formData.realName, formData.telephone, formData.password, formData.doctorId)
+                      .then(() => {
+                        Toast.show('注册成功!')
+                      })
+                      .catch((reason) => {
+                        Toast.show('注册失败...')
+                        console.log(reason)
+                      })
                     break
                 }
               }
@@ -90,6 +115,7 @@ const Fast_login: React.FC = () => {
                   label={`医生ID`}
                   validateTrigger={`onBlur`}
                   disabled={true}
+                  initialValue={formData.doctorId}
                   rules={[
                     {
                       validator: (_, value) => {
@@ -188,3 +214,17 @@ const Fast_login: React.FC = () => {
 }
 
 export default Fast_login
+
+
+export const getServerSideProps: GetServerSideProps = async (context): Promise<{ props: Props }> => {
+  const {doctorId}: Query = context.query
+  let props: Props = {}
+  if (doctorId && isNumber(doctorId)) {
+    props.doctorId = toNumber(doctorId)
+  }
+  return {
+    props: {
+      ...props
+    }
+  }
+}
