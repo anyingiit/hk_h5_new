@@ -100,7 +100,7 @@ class MyAxios {
         return Promise.reject(response)
       }
       if (!respData.success) {
-        Toast.show('统一出错, 接口返回操作失败了, 信息: ' + response.data.message)
+        Toast.show('统一出错, 接口返回操作失败了, 信息: ' + respData.msg)
         return Promise.reject(response)
       }
       return response
