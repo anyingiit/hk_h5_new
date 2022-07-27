@@ -3,7 +3,8 @@
   height: 100vh;
   //noinspection CssUnknownTarget
   background: url("/img/fast_login_background.png");
-  padding-top: 1.55rem;
+  display: flex;
+  align-items: center;
 
   .container {
     width: 3.75rem;
