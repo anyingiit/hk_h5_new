@@ -60,6 +60,7 @@ const Fast_login: React.FC = () => {
                       })
                       .catch((reason) => {
                         // Toast.show('login 失败')
+                        //TODO: 是因为用户注册失败, 还是密码错误或者其他失败?  如果是前者, 那么应当跳转到注册页面, 如果是后者, 那么应当提示错误
                         console.log(reason)
                       })
                     break
