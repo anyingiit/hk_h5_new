@@ -4,14 +4,14 @@ FROM node:alpine AS deps
 RUN apk add --no-cache libc6-compat
 WORKDIR /app
 COPY package.json yarn.lock ./
-RUN yarn install --frozen-lockfile # 安装依赖, 但是不要更新`yarn.lock`文件, 如果需要更新则返回失败
+RUN yarn config set registry http://mirrors.cloud.tencent.com/npm/ && yarn install --frozen-lockfile # 安装依赖, 但是不要更新`yarn.lock`文件, 如果需要更新则返回失败
 
 # Rebuild the source code only when needed
 FROM node:alpine AS builder
 WORKDIR /app
 COPY . .
 COPY --from=deps /app/node_modules ./node_modules
-RUN yarn build && yarn install --production --ignore-scripts --prefer-offline  # --ignore-scripts 不要运行声明周期脚本. --prefer-offline 只有在本地缓存中没有依赖项时才使用网络.
+RUN yarn config set registry http://mirrors.cloud.tencent.com/npm/ && yarn build && yarn install --production --ignore-scripts --prefer-offline  # --ignore-scripts 不要运行声明周期脚本. --prefer-offline 只有在本地缓存中没有依赖项时才使用网络.
 
 # Production image, copy all the files and run next
 FROM node:alpine AS runner
