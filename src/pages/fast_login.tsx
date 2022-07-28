@@ -52,7 +52,7 @@ const Fast_login: React.FC<Props> = ({doctorId}) => {
               <AutoCenter>
                 <div className={styles.button}>
                   <Button type={`submit`} block={true}
-                          color={`primary`}>下一步</Button>
+                          color={`primary`}>{mode === 'login' ? '登录' : '注册'}</Button>
                 </div>
               </AutoCenter>
             }
@@ -71,7 +71,7 @@ const Fast_login: React.FC<Props> = ({doctorId}) => {
                         /**
                          * 如果失败的原因是该用户未注册, 那么应当跳转到注册页面
                          */
-                        if (respData.msg === "无此账号对应的患者") {
+                        if (respData.operateCode === 4009) {
                           Toast.show('请继续填写剩余内容以完成注册')
                           setMode('register')
                         }
