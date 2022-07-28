@@ -5,7 +5,7 @@ import PageBase from "../components/pageBase";
 const Home: React.FC<any> = () => {
   return (
     <PageBase navBar={{title: `首页`, showBackArrow: false}}>
-
+      HOME页面
     </PageBase>
   )
 }

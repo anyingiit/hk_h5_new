@@ -65,6 +65,7 @@ const Fast_login: React.FC<Props> = ({doctorId}) => {
                     doLogin_web_pf(formData.telephone, formData.password)
                       .then((value) => {
                         Toast.show('login 成功了')
+                        router.push('/home')
                         console.log(value)
                       })
                       .catch((reason) => {
