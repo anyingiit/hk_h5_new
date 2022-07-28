@@ -95,8 +95,8 @@ class MyAxios {
       }
       const respData = response.data
       // 返回的结果不包含success或者message
-      if (respData.success === undefined || respData.msg === undefined) {
-        Toast.show('response数据中没有success或者msg字段')
+      if (respData.success === undefined || respData.msg === undefined || respData.operateCode === undefined) {
+        Toast.show('response数据中缺少success, msg, operateCode三个字段中的一个字段')
         return Promise.reject(response)
       }
       if (!respData.success) {
@@ -106,8 +106,11 @@ class MyAxios {
          */
         const specialHandling: Array<{
           url: string,
-          msgTarget: Array<{
-            msg: string,
+          targets: Array<{
+            /**
+             * 操作状态码
+             */
+            operateCode: number,
             /**
              * 当服务器返回的消息和这里记录的消息完全匹配(完全一致)的话, 就执行这个函数. 当该函数为`undefined`时代表什么都不需要执行
              */
@@ -116,9 +119,12 @@ class MyAxios {
         }> = [
           {
             url: '/login/doLogin_web_pf',
-            msgTarget: [
+            targets: [
+              /**
+               * 用户尝试登录时发现该用户不存在
+               */
               {
-                msg: '无此账号对应的患者',
+                operateCode: 4009,
                 handling: undefined
               }
             ]
@@ -135,11 +141,11 @@ class MyAxios {
             /**
              * 判断服务器返回的消息是否和匹配的一致
              */
-            for (const target of specialItem.msgTarget) {
+            for (const target of specialItem.targets) {
               /**
                * 如果一致则需要执行该函数(undefined则不需要执行)
                */
-              if (respData.msg === target.msg) {
+              if (respData.operateCode === target.operateCode) {
                 target.handling != undefined && target.handling()
                 /**
                  * 执行成功则直接返回, 这里屏蔽了后续操作
