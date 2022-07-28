@@ -6,6 +6,7 @@ import {doLogin_web_pf} from "../api/login";
 import {GetServerSideProps} from "next";
 import {register} from "../api/patient/register";
 import {isNumber, toNumber} from "../utils";
+import {useRouter} from "next/router";
 
 
 interface Query {
@@ -30,6 +31,7 @@ interface Props {
  *    3. 患者扫描医生二维码注册
  */
 const Fast_login: React.FC<Props> = ({doctorId}) => {
+  const router = useRouter()
   const [formData, setFormData] = useState({
     doctorId: doctorId,
     telephone: ``,
@@ -83,6 +85,7 @@ const Fast_login: React.FC<Props> = ({doctorId}) => {
                     register(formData.realName, formData.telephone, formData.password)
                       .then(() => {
                         Toast.show('注册成功!')
+                        router.push('http://baidu.com')
                       })
                       .catch((reason) => {
                         Toast.show('注册失败...')
@@ -93,6 +96,7 @@ const Fast_login: React.FC<Props> = ({doctorId}) => {
                     register(formData.realName, formData.telephone, formData.password, formData.doctorId)
                       .then(() => {
                         Toast.show('注册成功!')
+                        router.push('http://baidu.com')
                       })
                       .catch((reason) => {
                         Toast.show('注册失败...')
