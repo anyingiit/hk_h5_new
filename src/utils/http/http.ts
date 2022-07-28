@@ -10,7 +10,7 @@ import {ToastHandler} from "antd-mobile/es/components/toast";
 const getBaseUrl = (env: string) => {
   const base: { [propName: string]: string } = {
     // TODO: 将其替换为生产服务器地址
-    "production": 'http://testapi.51cgt.cn/DPPlatform',
+    "production": 'https://testapi.51cgt.cn/DPPlatform',
     "development": 'http://testapi.51cgt.cn/DPPlatform',
     "test": 'http://localhost:3001',
   }
