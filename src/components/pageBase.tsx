@@ -1,5 +1,5 @@
 import React from "react";
-import {NavBar} from "antd-mobile";
+import {NavBar, SafeArea} from "antd-mobile";
 import {useRouter} from "next/router";
 import Head from "next/head";
 import styles from "../css/components/pageBase.module.scss"
@@ -29,9 +29,9 @@ const PageBase: React.FC<Props> = ({navBar, children}) => {
         <title>{navBar ? navBar.title : `页面`}</title>
       </Head>
 
-      {/*<div style={{background: '#ace0ff'}}>*/}
-      {/*  <SafeArea position='top'/>*/}
-      {/*</div>*/}
+      <div style={{background: '#ace0ff'}}>
+        <SafeArea position='top'/>
+      </div>
 
       {/* navBar */}
       {
@@ -49,9 +49,9 @@ const PageBase: React.FC<Props> = ({navBar, children}) => {
       {/* children */}
       {children}
 
-      {/*<div style={{background: '#ffcfac'}}>*/}
-      {/*  <SafeArea position='bottom'/>*/}
-      {/*</div>*/}
+      <div style={{background: '#ffcfac'}}>
+        <SafeArea position='bottom'/>
+      </div>
     </div>
   )
 }
