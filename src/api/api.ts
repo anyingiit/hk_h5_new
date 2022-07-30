@@ -1,11 +1,12 @@
 import {AxiosRequestConfig} from "axios";
 import {http} from "../utils";
 import qs from "qs"
+import {ApiResponse} from "../types";
 
 export const baseUrl: string = '/'
 
-export const post = (url: string, bodyData: object, bodyDataType: 'x-www-form-urlencoded', options: AxiosRequestConfig = {}) => {
-  return http.request(
+export const post = <T = any>(url: string, bodyData: object, bodyDataType: 'x-www-form-urlencoded', options: AxiosRequestConfig = {}) => {
+  return http.request<ApiResponse<T>>(
     {
       ...options,
       url: url,
@@ -23,8 +24,8 @@ export const post = (url: string, bodyData: object, bodyDataType: 'x-www-form-ur
   )
 }
 
-export const get = (url: string, params: object, options: AxiosRequestConfig = {}) => {
-  return http.request(
+export const get = <T = any>(url: string, params: object, options: AxiosRequestConfig = {}) => {
+  return http.request<ApiResponse<T>>(
     {
       ...options,
       url: url,

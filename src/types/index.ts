@@ -1,3 +1,6 @@
-export * from './user/role'
-export * from './http'
-export * from './user'
+export interface ApiResponse<T = any> {
+  success: boolean,
+  msg: string,
+  data: T,
+  operateCode: number
+}

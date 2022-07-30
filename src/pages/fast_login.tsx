@@ -70,6 +70,9 @@ const Fast_login: React.FC<Props> = ({doctorId}) => {
                       })
                       .catch((reason) => {
                         // Toast.show('login 失败')
+                        if (reason.data === undefined) {
+                          return
+                        }
                         const respData = reason.data
                         /**
                          * 如果失败的原因是该用户未注册, 那么应当跳转到注册页面

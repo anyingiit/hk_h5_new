@@ -39,7 +39,7 @@ class MyAxios {
    * @param options 自定义选项
    * @return AxiosPromise
    */
-  request = (options: AxiosRequestConfig): AxiosPromise => {
+  request = <T = any>(options: AxiosRequestConfig): AxiosPromise<T> => {
     /**
      * 每次请求都创建一个新的实例
      */
