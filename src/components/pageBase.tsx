@@ -9,7 +9,8 @@ interface Props {
     title: string,
     showBackArrow: boolean
   },
-  children?: React.ReactNode
+  children?: React.ReactNode,
+  style?: React.CSSProperties
 }
 
 /**
@@ -18,11 +19,11 @@ interface Props {
  *    2. 可配置的navBar
  *    3. 上下安全区
  */
-const PageBase: React.FC<Props> = ({navBar, children}) => {
+const PageBase: React.FC<Props> = ({navBar, children, style}) => {
   //TODO: 增加遮罩
   const router = useRouter()
   return (
-    <div className={styles.root}>
+    <div className={styles.root} style={style}>
       <Head>
         <meta name={`viewport`}
               content={`width=device-width, initial-scale=1.0`}/>
