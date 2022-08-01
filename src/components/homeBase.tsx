@@ -14,10 +14,11 @@ import path from "path";
 
 interface Props {
   children: React.ReactNode,
-  activeKey: 'home' | 'todo' | 'message' | 'personalCenter'
+  activeKey: 'home' | 'todo' | 'message' | 'personalCenter',
+  style?: React.CSSProperties
 }
 
-export const HomeBase: React.FC<Props> = ({children, activeKey}) => {
+export const HomeBase: React.FC<Props> = ({children, activeKey, style}) => {
   const router = useRouter()
   const tabs = [
     {
@@ -50,7 +51,8 @@ export const HomeBase: React.FC<Props> = ({children, activeKey}) => {
     <PageBase style={{
       position: 'relative',
       width: '100vw',
-      height: '100vh'
+      height: '100vh',
+      ...style
     }}>
       {children}
       <BottomNavBar
