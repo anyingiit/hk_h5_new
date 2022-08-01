@@ -26,7 +26,7 @@ const PageBase: React.FC<Props> = ({navBar, children, style}) => {
     <div className={styles.root} style={style}>
       <Head>
         <meta name={`viewport`}
-              content={`width=device-width, initial-scale=1.0`}/>
+              content={`width=device-width, initial-scale=1.0, viewport-fit=cover`}/>
         <title>{navBar ? navBar.title : `页面`}</title>
       </Head>
 

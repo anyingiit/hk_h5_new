@@ -50,8 +50,8 @@ export const HomeBase: React.FC<Props> = ({children, activeKey, style}) => {
   return (
     <PageBase style={{
       position: 'relative',
-      width: '100vw',
-      height: '100vh',
+      width: '3.75rem',
+      height: '6.67rem',
       ...style
     }}>
       {children}
