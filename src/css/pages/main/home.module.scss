@@ -1,54 +1,61 @@
-.round {
-  width: 100vw;
+.container {
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
 
-  .box {
-    //noinspection CssUnknownTarget
-    background: url("/img/round.jpg") no-repeat;
-    background-size: contain;
-    width: 3.45rem;
-    height: 3.45rem;
-    position: relative;
+  .round {
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-    .a, .b, .c, .d, .e, .f {
-      position: absolute;
-      width: 0.6rem;
-      height: 0.6rem;
-      top: 0;
-      left: 0;
-      background: red;
-    }
+    .box {
+      //noinspection CssUnknownTarget
+      background: url("/img/round.jpg") no-repeat;
+      background-size: contain;
+      width: 3.45rem;
+      height: 3.45rem;
+      position: relative;
 
-    .a {
-      top: 0.46rem;
-      left: 1.38rem;
-    }
+      .a, .b, .c, .d, .e, .f {
+        position: absolute;
+        width: 0.6rem;
+        height: 0.6rem;
+        top: 0;
+        left: 0;
+        background: red;
+      }
 
-    .b {
-      top: 0.94rem;
-      left: 2.15rem;
-    }
+      .a {
+        top: 0.46rem;
+        left: 1.38rem;
+      }
 
-    .c {
-      top: 1.84rem;
-      left: 2.15rem;
-    }
+      .b {
+        top: 0.94rem;
+        left: 2.15rem;
+      }
 
-    .d {
-      top: 2.27rem;
-      left: 1.38rem;
-    }
+      .c {
+        top: 1.84rem;
+        left: 2.15rem;
+      }
 
-    .e {
-      top: 0.94rem;
-      left: 0.59rem;
-    }
+      .d {
+        top: 2.27rem;
+        left: 1.38rem;
+      }
 
-    .f {
-      top: 1.84rem;
-      left: 0.59rem;
+      .e {
+        top: 0.94rem;
+        left: 0.59rem;
+      }
+
+      .f {
+        top: 1.84rem;
+        left: 0.59rem;
+      }
     }
   }
 }
