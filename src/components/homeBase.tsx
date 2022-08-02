@@ -48,12 +48,12 @@ export const HomeBase: React.FC<Props> = ({children, activeKey, style}) => {
   ]
 
   return (
-    <PageBase style={{
-      position: 'relative',
-      width: '3.75rem',
-      height: '6.67rem',
-      ...style
-    }}>
+    <PageBase
+      allScreen={true}
+      style={{
+        paddingBottom: '0.49rem',
+        ...style
+      }}>
       {children}
       <BottomNavBar
         style={{
