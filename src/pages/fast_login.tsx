@@ -42,7 +42,7 @@ const Fast_login: React.FC<Props> = ({doctorId}) => {
   const [mode, setMode] = useState(formData.doctorId ? 'bindDoctorRegister' : 'login' as 'login' | 'register' | 'bindDoctorRegister')
   //TODO: 使用useEffect页面载入时需不需要进入`bindDoctorRegister`模式并且将`doctorId`注册到`form.doctorId`
   return (
-    <PageBase>
+    <PageBase allScreen={true}>
       <div className={styles.root}>
         <div className={styles.container}>
           <Form
