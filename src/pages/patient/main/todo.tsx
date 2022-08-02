@@ -1,5 +1,5 @@
 import React from "react";
-import {HomeBase} from "../../components/homeBase";
+import {HomeBase} from "../../../components/homeBase";
 
 const Todo: React.FC = () => {
   return (

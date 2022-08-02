@@ -1,6 +1,6 @@
 import React from "react";
-import {HomeBase} from "../../components/homeBase";
-import styles from "../../css/pages/main/home.module.scss"
+import {HomeBase} from "../../../components/homeBase";
+import styles from "../../../css/pages/main/home.module.scss"
 
 const Home: React.FC = () => {
   return (

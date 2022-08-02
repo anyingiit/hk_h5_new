@@ -1,6 +1,7 @@
 import React, {useEffect} from "react";
-import {hasLoginInfo} from "../utils";
+import {hasLoginInfo} from "../../utils";
 import {useRouter} from "next/router";
+import path from "path";
 
 
 // 使用箭头函数作为函数式组件, 注意: 箭头函数没有this
@@ -14,9 +15,9 @@ const Index: React.FC<any> = () => {
     if (hasLoginInfo()) {
       // TODO: 检查登录状态, 如果已经失效就清除并且刷新页面
       // TODO: axios需要进行封装, 在某个接口请求返回token失效的时候应当提示信息并跳转到index页面
-      router.push('/home')
+      router.push(path.join('/patient', '/main', '/home'))
     } else {
-      router.push('/fast_login')
+      router.push(path.join('/patient', '/fast_login'))
     }
   })
   return (

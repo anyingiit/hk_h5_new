@@ -1,12 +1,13 @@
 import React, {useState} from "react";
-import PageBase from "../components/pageBase";
-import styles from "../css/pages/fast_login.module.scss"
+import PageBase from "../../components/pageBase";
+import styles from "../../css/pages/fast_login.module.scss"
 import {AutoCenter, Button, Form, Input, Toast} from "antd-mobile";
-import {doLogin_web_pf} from "../api/login";
+import {doLogin_web_pf} from "../../api/login";
 import {GetServerSideProps} from "next";
-import {register} from "../api/patient/register";
-import {isNumber, toNumber} from "../utils";
+import {register} from "../../api/patient/register";
+import {isNumber, toNumber} from "../../utils";
 import {useRouter} from "next/router";
+import path from "path";
 
 
 interface Query {
@@ -65,7 +66,7 @@ const Fast_login: React.FC<Props> = ({doctorId}) => {
                     doLogin_web_pf(formData.telephone, formData.password)
                       .then((value) => {
                         Toast.show('login 成功了')
-                        router.push('/home')
+                        router.push(path.join('patient', '/home'))
                         console.log(value)
                       })
                       .catch((reason) => {
