@@ -65,7 +65,7 @@ export const HomeBase: React.FC<Props> = ({children, activeKey, style}) => {
         tabs={tabs}
         activeKey={activeKey}
         onChange={(key) => {
-          router.push(path.join('/main', key))
+          router.push(path.join('/patient', '/main', key))
         }}
       />
     </PageBase>
