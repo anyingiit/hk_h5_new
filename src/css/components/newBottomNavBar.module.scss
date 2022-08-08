@@ -1,0 +1,51 @@
+.container {
+  margin-top: 100px; //TODO: 去除该调试样式
+
+  height: 0.49rem;
+  width: 100vw;
+
+  //background-color: rebeccapurple;
+  display: flex;
+  flex-direction: row;
+
+  .item {
+    flex-grow: 1;
+    //background-color: red;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 0.12rem;
+    color: darkgray;
+
+    .icon {
+      font-size: 0.24rem;
+    }
+
+    .words {
+
+    }
+  }
+
+  .center {
+    position: relative;
+
+    .round {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      margin-left: -0.3rem;
+      width: 0.6rem;
+      height: 0.6rem;
+      border-radius: 50%;
+      background-color: white;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 0.5rem;
+    }
+  }
+}

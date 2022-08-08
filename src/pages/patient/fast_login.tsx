@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import PageBase from "../../components/pageBase";
-import styles from "../../css/pages/fast_login.module.scss"
+import styles from "../../css/pages/patient/fast_login.module.scss"
 import {AutoCenter, Button, Form, Input, Toast} from "antd-mobile";
 import {doLogin_web_pf} from "../../api/login";
 import {GetServerSideProps} from "next";
