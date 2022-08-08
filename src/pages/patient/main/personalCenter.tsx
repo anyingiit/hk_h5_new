@@ -1,5 +1,5 @@
 import React from "react";
-import {HomeBase} from "../../../components/homeBase";
+import {HomeBase} from "../../../components/patient/homeBase";
 
 const PersonalCenter: React.FC = () => {
   return (

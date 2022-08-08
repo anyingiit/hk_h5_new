@@ -1,0 +1,53 @@
+.container {
+  height: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .box {
+    width: 3.45rem;
+    height: 3.45rem;
+    //background-color: #1ab3944a;
+    //border-radius: 50%;
+    display: flex;
+    flex-direction: row;
+
+    .left, .right {
+      height: 100%;
+      width: 100%;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      .icon {
+        font-size: 0.5rem;
+      }
+
+      .name {
+        font-size: 0.17rem;
+      }
+    }
+
+    .left {
+      background-color: #2e8f978c;
+      border-radius: 999px 0 0 999px;
+
+      .icon {
+        color: #2e8f978c;
+      }
+    }
+
+
+    .right {
+      background-color: #663399b3;
+      border-radius: 0 999px 999px 0;
+
+      .icon {
+        color: #663399b3;
+      }
+    }
+  }
+}
