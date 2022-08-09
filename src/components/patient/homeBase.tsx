@@ -40,7 +40,7 @@ export const HomeBase: React.FC<Props> = ({children, activeKey, style}) => {
           right: {
             title: '我的',
             onClick: () => {
-              router.push(path.join('/patient', '/main', '/personalCenter'))
+              Toast.show('开发中, 敬请期待')
             },
             icon: <UserOutline/>
           },
