@@ -7,7 +7,8 @@ import styles from "../css/components/pageBase.module.scss"
 interface Props {
   navBar?: {
     title: string,
-    showBackArrow: boolean
+    showBackArrow: boolean,
+    right?: React.ReactNode
   },
   children?: React.ReactNode,
   style?: React.CSSProperties,
@@ -71,7 +72,10 @@ const PageBase: React.FC<Props> = ({navBar, children, style, allScreen}) => {
             position: 'absolute',
             top: '0',
             left: '0',
+            width: '100%',
+            boxSizing: 'border-box', // 本身NavBar组件会有12px左右边距, 而当设定宽度为100%时, padding会被额外计算宽度, 从而导致宽度宽出来24px
           }}
+          right={navBar.right}
         >{navBar.title}</NavBar>
       }
 
