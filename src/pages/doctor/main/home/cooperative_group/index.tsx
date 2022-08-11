@@ -68,6 +68,7 @@ export const Index: React.FC<Props> = ({data}) => {
                   description={user.description}
                   onClick={() => {
                     //TODO: 可以复用
+                    router.push(path.join(router.pathname, '/send_message'))
                     Toast.show('id: ' + user.id)
                   }}
                 >
