@@ -1,10 +1,9 @@
 import React from "react";
 import {GetServerSideProps} from "next";
 import PageBase from "../../../../../components/pageBase";
-import styles
-  from "../../../../../css/pages/patient/main/home/fast_match/doctor_detail.module.scss"
-import {Avatar, Button} from "antd-mobile";
 import {isNumber, toNumber} from "../../../../../utils";
+import User_info from "../../../../../components/user_info";
+import {Toast} from "antd-mobile";
 
 
 interface Query {
@@ -26,21 +25,14 @@ export const Doctor_detail: React.FC<Props> = ({id, name, description}) => {
         showBackArrow: true
       }}
     >
-      <div className={styles.container}>
-        <div className={styles.top}>
-          <Avatar
-            src={``}
-            style={{
-              '--size': '1rem'
-            }}
-          />
-          <p className={styles.name}>{name}</p>
-          <p className={styles.description}>{description}</p>
-        </div>
-        <div className={styles.bottom}>
-          <Button color={`primary`}>签约</Button>
-        </div>
-      </div>
+      <User_info
+        data={{name, description}}
+        bottomButton={{
+          description: '签约',
+          onClick: () => {
+            Toast.show(id.toString())
+          }
+        }}/>
     </PageBase>
   )
 }
