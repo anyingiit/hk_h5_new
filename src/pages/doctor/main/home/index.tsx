@@ -1,11 +1,12 @@
 import React from "react";
-import {HomeBase} from "../../../components/doctor/homeBase";
+import {HomeBase} from "../../../../components/doctor/homeBase";
 import {useRouter} from "next/router";
-import styles from "../../../css/pages/doctor/main/home.module.scss"
+import styles from "../../../../css/pages/doctor/main/home/index.module.scss"
 import {MessageOutline, TeamOutline} from "antd-mobile-icons";
 import {Toast} from "antd-mobile";
+import path from "path";
 
-const Home: React.FC = () => {
+const Index: React.FC = () => {
   const router = useRouter()
   return (
     <HomeBase
@@ -16,7 +17,7 @@ const Home: React.FC = () => {
           <div
             className={styles.left}
             onClick={() => {
-              Toast.show('协作组')
+              router.push(path.join(router.pathname, '/cooperative_group'))
             }}
           >
             <div className={styles.icon}>
@@ -45,4 +46,4 @@ const Home: React.FC = () => {
   )
 }
 
-export default Home
+export default Index
