@@ -2,7 +2,7 @@ import React from "react";
 import PageBase from "../../../../../components/pageBase";
 import styles
   from "../../../../../css/pages/doctor/main/home/send_message.module.scss"
-import {Button, Space} from "antd-mobile";
+import {Button} from "antd-mobile";
 
 export const Send_message: React.FC = () => {
   return (
@@ -19,12 +19,10 @@ export const Send_message: React.FC = () => {
         </div>
         <div className={styles.bottom}>
           <div className={styles.buttons}>
-            <Space align={`center`}>
-              <button>患者病历</button>
-              <button>视频通话</button>
-              <button>会诊结果</button>
-              <button>结束会诊</button>
-            </Space>
+            <Button size={`small`}>患者病历</Button>
+            <Button size={`small`}>视频通话</Button>
+            <Button size={`small`}>会诊结果</Button>
+            <Button size={`small`}>结束会诊</Button>
           </div>
           {/*TODO: 文本框和按钮会将父盒子挤压的的问题*/}
           <div className={styles.inputContainer}>
