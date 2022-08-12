@@ -27,6 +27,13 @@ interface Props {
   style: React.CSSProperties
 }
 
+/**
+ * 用户页面底部Nav操作条, 内含有三个按钮, 分别是左侧按钮, 中间主要按钮, 右侧按钮
+ * @param item 左中右按钮的按钮图标, 描述, 以及回调, 其中居中按钮没有描述或者图片选项, 其为固定样式
+ * @param curSelect 用于指定哪个按钮属于选中状态
+ * @param style 向最外侧container直接添加style
+ * @constructor
+ */
 export const NewBottomNavBar: React.FC<Props> = ({
                                                    item,
                                                    curSelect,
