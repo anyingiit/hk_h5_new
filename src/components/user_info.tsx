@@ -13,6 +13,12 @@ interface Props {
   }
 }
 
+/**
+ * 提供展示用户信息的页面, 包括一个可选的操作按钮
+ * @param data 用户姓名, 用户描述
+ * @param bottomButton 可选, 当存在时底部存在一个按钮, 你可以设置其按钮文字以及点击回调
+ * @constructor
+ */
 export const User_info: React.FC<Props> = ({data, bottomButton}) => {
   return (
     <div className={styles.container}>
