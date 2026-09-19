@@ -1,11 +1,34 @@
 # Source: GitHub starter workflow "Simple workflow" (MIT) — https://github.com/actions/starter-workflows/blob/main/ci/blank.yml
+#
+# Repaired by repocurator (feature 002):
+#   - `push` and `pull_request` triggered on `main`; this repository's default
+#     branch is `dev`, so the workflow had never run on a push to it.
+#   - the test job ran the starter's placeholder echo, so a green check
+#     proved only that the runner could print a sentence. It now installs
+#     dependencies, builds the Next.js app (`yarn build`), type-checks the
+#     project, and runs a new smoke test (`smoke/smoke.test.ts`) over the
+#     pure `isNumber`/`toNumber` helpers in `src/utils/data`. The
+#     repository's own `test` script is `tsc --watch`, which never exits and
+#     cannot run in CI, so the type check runs the same compiler in
+#     `--noEmit` mode instead.
+#   - the lint job only checked that actions were pinned; it now also
+#     installs dependencies and runs the project's own linter (`yarn lint`,
+#     which is `next lint` against `.eslintrc.json`).
+#   - the build step failed on the runner's current Ubuntu image
+#     (`Failed to load SWC binary ... libssl.so.1.1: cannot open shared
+#     object file`): Next.js 12.2.2 ships a native SWC binary linked against
+#     OpenSSL 1.1, which `ubuntu-latest` no longer carries, and its WASM
+#     fallback download fails too (a URL-construction bug in that Next.js
+#     version, unrelated to this repository). The test job now installs the
+#     `libssl1.1` compatibility library before building, so the native
+#     binary loads and the fallback is never needed.
 name: CI
 
 on:
   push:
-    branches: [main]
+    branches: [dev]
   pull_request:
-    branches: [main]
+    branches: [dev]
   workflow_dispatch:
 
 # The workflow token is read-only by default.
@@ -41,18 +64,47 @@ jobs:
           fi
           echo "All actions are pinned to full-length commit SHAs."
 
-      # Add your project's linters below this line.
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: '18'
+          cache: 'yarn'
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Lint
+        run: yarn lint
 
   test:
-    name: Test
+    name: Build and test
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
 
-      # Replace the step below with your project's test command. Pin any setup
-      # action you add to a full commit SHA, like the checkout step above.
-      - name: Run tests
-        run: echo "No tests yet. Replace this step with your project's test command."
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: '18'
+          cache: 'yarn'
+
+      - name: Install libssl1.1 (Next.js 12's bundled SWC binary needs it; ubuntu-latest ships only OpenSSL 3)
+        run: |
+          curl -fsSL -o /tmp/libssl1.1.deb \
+            http://security.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.1_1.1.1f-1ubuntu2.24_amd64.deb
+          sudo dpkg -i /tmp/libssl1.1.deb
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Build
+        run: yarn build
+
+      - name: Type check
+        run: npx tsc --noEmit
+
+      - name: Smoke test
+        run: |
+          npx tsc smoke/smoke.test.ts --outDir smoke/dist --module commonjs --target es2019 --esModuleInterop --skipLibCheck --resolveJsonModule
+          node smoke/dist/smoke/smoke.test.js
