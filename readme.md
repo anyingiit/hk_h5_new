@@ -1,9 +1,11 @@
 <!-- Source: Best-README-Template BLANK_README (Unlicense) — https://github.com/othneildrew/Best-README-Template -->
 <a id="readme-top"></a>
 
-# Hk H5 New
+# hk_h5_new
 
-render: React + Next.js UI: Ant Design Mobile.
+A Next.js and Ant Design Mobile web front end for a telehealth platform, with separate patient and doctor sections for phone login, registration and doctor-led consultations.
+
+**English** · [简体中文](README.zh-CN.md)
 
 [![CI](https://github.com/anyingiit/hk_h5_new/actions/workflows/ci.yml/badge.svg)](https://github.com/anyingiit/hk_h5_new/actions/workflows/ci.yml)
 [![License](https://img.shields.io/github/license/anyingiit/hk_h5_new)](LICENSE)
@@ -24,7 +26,22 @@ render: React + Next.js UI: Ant Design Mobile.
 
 ## About The Project
 
-render: React + Next.js UI: Ant Design Mobile.
+hk_h5_new is a mobile web (H5) front end built with Next.js and Ant Design Mobile,
+rendered with React. It carries two separate sections under one app:
+
+- A patient side, where a visitor signs in by phone number or, if they are not
+  registered yet, is walked straight into registration on the same screen
+  (`src/pages/patient/fast_login.tsx`). A registration can optionally bind the
+  new patient to a specific doctor when the page is opened with a doctor ID.
+- A doctor side, where a signed-in doctor keeps a searchable list of other
+  doctors to collaborate with (`src/pages/doctor/main/home/cooperative_group/index.tsx`,
+  searchable by name or its Pinyin spelling) and opens a per-patient
+  consultation screen with placeholders for a message box, a video call, and
+  pulling up the patient's record (`send_message.tsx`).
+
+Every request goes through one Axios client with shared error handling for
+expired sessions and failed responses (`src/utils/http/http.ts`), which
+targets a separate backend API rather than serving one itself.
 
 See the [open issues](https://github.com/anyingiit/hk_h5_new/issues) for planned features and known issues.
 
@@ -32,19 +49,33 @@ See the [open issues](https://github.com/anyingiit/hk_h5_new/issues) for planned
 
 ### Prerequisites
 
-- Git
+- Node.js, to run the Next.js app; the Dockerfile builds and serves it on `node:alpine`
+- Yarn, since dependencies are pinned in `yarn.lock` and the Dockerfile installs with `yarn install --frozen-lockfile`
 
 ### Installation
 
 ```sh
 git clone https://github.com/anyingiit/hk_h5_new.git
 cd hk_h5_new
+yarn install --frozen-lockfile
 ```
 
 ## Usage
 
+Start the development server:
+
 ```sh
-hk_h5_new --help
+yarn dev
+```
+
+This runs `next dev -H 0.0.0.0`, so the app is reachable on port 3000 from
+other devices on the network, not just `localhost` -- useful for testing the
+mobile pages on a phone. To build and run the production bundle instead, the
+way the Dockerfile does:
+
+```sh
+yarn build
+yarn start
 ```
 
 ## Contributing
