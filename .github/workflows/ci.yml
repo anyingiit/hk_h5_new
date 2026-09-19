@@ -14,6 +14,14 @@
 #   - the lint job only checked that actions were pinned; it now also
 #     installs dependencies and runs the project's own linter (`yarn lint`,
 #     which is `next lint` against `.eslintrc.json`).
+#   - the build step failed on the runner's current Ubuntu image
+#     (`Failed to load SWC binary ... libssl.so.1.1: cannot open shared
+#     object file`): Next.js 12.2.2 ships a native SWC binary linked against
+#     OpenSSL 1.1, which `ubuntu-latest` no longer carries, and its WASM
+#     fallback download fails too (a URL-construction bug in that Next.js
+#     version, unrelated to this repository). The test job now installs the
+#     `libssl1.1` compatibility library before building, so the native
+#     binary loads and the fallback is never needed.
 name: CI
 
 on:
@@ -80,6 +88,12 @@ jobs:
         with:
           node-version: '18'
           cache: 'yarn'
+
+      - name: Install libssl1.1 (Next.js 12's bundled SWC binary needs it; ubuntu-latest ships only OpenSSL 3)
+        run: |
+          curl -fsSL -o /tmp/libssl1.1.deb \
+            http://security.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.1_1.1.1f-1ubuntu2.24_amd64.deb
+          sudo dpkg -i /tmp/libssl1.1.deb
 
       - name: Install dependencies
         run: yarn install --frozen-lockfile
